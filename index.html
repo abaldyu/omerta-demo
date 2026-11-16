@@ -43,14 +43,14 @@ h1,h2,h3,.disp{font-family:Oswald,Impact,sans-serif;text-transform:uppercase;fon
 .btn-line{border-color:rgba(236,230,220,.4);color:var(--ink);background:transparent}
 .btn:disabled{opacity:.35;cursor:not-allowed;transform:none}
 
-header{position:fixed;inset:0 0 auto;z-index:20;transition:background .3s}
+header{position:sticky;top:0;margin-bottom:-64px;z-index:20;transition:background .3s}
 header.solid{background:rgba(15,14,13,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .bar{display:flex;align-items:center;justify-content:space-between;height:64px}
 .logo{font-family:Oswald,sans-serif;font-weight:700;font-size:24px;letter-spacing:.14em;text-decoration:none;display:flex;align-items:center;gap:10px}
 .logo i{width:22px;height:2px;background:var(--brass);display:inline-block;transform:rotate(-45deg)}
 nav.desk{display:none}
 .burger{width:44px;height:44px;border:0;background:none;color:var(--ink);cursor:pointer}
-.drawer{position:fixed;inset:64px 0 auto;background:var(--bg);padding:8px 20px 24px;display:none;flex-direction:column;border-bottom:1px solid var(--line)}
+.drawer{position:absolute;top:64px;left:0;right:0;background:var(--bg);padding:8px 20px 24px;display:none;flex-direction:column;border-bottom:1px solid var(--line)}
 .drawer.open{display:flex}
 .drawer a{padding:15px 0;border-bottom:1px solid var(--line);text-decoration:none;font-family:Oswald;text-transform:uppercase;font-size:20px;letter-spacing:.06em}
 
@@ -72,7 +72,7 @@ section{padding:80px 0;border-top:1px solid var(--line)}
 
 /* прайс */
 .price{list-style:none}
-.price li{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:18px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.price .row{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:18px 0;border-bottom:1px solid var(--line);align-items:baseline}
 .price .n{font-weight:700;font-size:18px}
 .price .d{grid-column:1;color:var(--ink-2);font-size:14px}
 .price .p{font-family:Oswald;font-size:28px;font-weight:500;grid-row:1/3;grid-column:2;align-self:center;text-align:right}
@@ -137,7 +137,7 @@ section{padding:80px 0;border-top:1px solid var(--line)}
 .nav-btns .btn{flex:1}
 label{display:grid;gap:6px;font-size:14px;color:var(--ink-2);margin-bottom:12px}
 input{min-height:52px;border-radius:var(--r);border:1px solid var(--line);background:var(--card);color:var(--ink);padding:0 14px;font:inherit;font-size:16px}
-input:focus,.opt:focus-visible,.day:focus-visible,.slot:focus-visible,.btn:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+input:focus,.opt:focus-visible,.cd:focus-visible,.cal-nav:focus-visible,.slot:focus-visible,.btn:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
 .summary{border:1px dashed var(--line);border-radius:var(--r);padding:16px;margin-bottom:16px;font-size:15px;display:grid;gap:4px}
 .summary b{color:var(--ink)}
 .summary span{color:var(--ink-2)}
@@ -186,6 +186,7 @@ footer{padding:32px 0;color:var(--ink-2);font-size:14px;border-top:1px solid var
   .sec-head{flex-direction:row;justify-content:space-between;align-items:flex-end}
   .price{columns:2;column-gap:56px}
   .price li{break-inside:avoid}
+  .price li:first-child .g{padding-top:0}
   .masters{grid-template-columns:repeat(5,1fr)}
   .bk{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
   .b-aside{position:sticky;top:100px}
@@ -217,8 +218,8 @@ label.consent.err{color:#E5484D}
 .mono{aspect-ratio:1;display:grid;place-items:center;background:radial-gradient(circle at 30% 20%,#2A2520,var(--card) 70%);font-family:Oswald;font-size:clamp(56px,16vw,96px);font-weight:700;color:var(--brass);letter-spacing:.02em}
 .demo-bar{position:relative;z-index:60;background:var(--brass);color:var(--brass-ink);font-size:13px;line-height:1.4;text-align:center;padding:8px 16px}
 .demo-bar a{color:inherit;font-weight:700}
-.price .g{display:block;grid-column:1/-1;padding:28px 0 4px;border:0;font-family:Oswald;font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass)}
-.price li.g{border:0}
+.price>li{margin-bottom:28px}
+.price .g{display:block;padding:0 0 4px;font-family:Oswald;font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass)}
 .master .body{padding:14px;gap:4px}
 .master h3{font-size:24px}
 .master .btn{min-height:44px;padding:0 10px;font-size:12px}
@@ -342,6 +343,7 @@ label.consent.err{color:#E5484D}
       <img src="img/scissors.jpg" alt="Стрижка ножницами" loading="lazy">
       <img src="img/tools.jpg" alt="Инструменты барбера" loading="lazy">
     </div>
+    <p class="note">Сейчас здесь фото-заглушки. На рабочем сайте — ваши работы, можно подтягивать прямо из ВК.</p>
   </div>
 </section>
 
@@ -349,11 +351,11 @@ label.consent.err{color:#E5484D}
   <div class="wrap">
     <div class="sec-head reveal"><h2>Отзывы</h2><p class="eyebrow">5,0 · 341 оценка на Яндекс Картах · 5,0 в 2ГИС</p></div>
     <div class="reviews reveal">
-      <div class="rev"><div class="q">“</div><p>Отличная организация, уютный интерьер, разумные цены.</p><span>Яндекс Карты</span></div>
-      <div class="rev"><div class="q">“</div><p>Приятные и вежливые мастера своего дела. Обслуживание на высоте.</p><span>Яндекс Карты</span></div>
-      <div class="rev"><div class="q">“</div><p>Предлагают горячие напитки бесплатно, а пока ждёшь — можно поиграть в приставку.</p><span>Яндекс Карты</span></div>
+      <div class="rev"><p><b>Мастера.</b> Вежливые, внимательные к деталям, с ними есть о чём поговорить.</p></div>
+      <div class="rev"><p><b>Атмосфера.</b> Уютный зал, бесплатные напитки, а пока ждёшь — приставка.</p></div>
+      <div class="rev"><p><b>Цены.</b> Гости называют их разумными и демократичными.</p></div>
     </div>
-    <p class="note">Фразы взяты из открытых отзывов на Яндекс Картах. На рабочем сайте отзывы подтягиваются виджетом карт.</p>
+    <p class="note">За что хвалят в отзывах на Яндекс Картах (пересказ). На рабочем сайте здесь будут сами отзывы — виджетом с карт.</p>
   </div>
 </section>
 
@@ -397,7 +399,6 @@ label.consent.err{color:#E5484D}
 </nav>
 
 <script>
-// ===== ДАННЫЕ: услуги и мастера (на рабочем сайте можно вынести в гугл-таблицу) =====
 // ===== ДАННЫЕ: прайс с Яндекс Карт, мастера — по упоминаниям в отзывах =====
 const SERVICES = [
   { g: 'Голова', id: 'cut', name: 'Мужская стрижка', desc: 'классика', price: 1400, book: true },
@@ -432,9 +433,9 @@ const MASTERS = [
 const rub = n => n.toLocaleString('ru-RU') + ' ₽';
 
 // прайс
-document.getElementById('price-list').innerHTML = SERVICES.map((s, i) =>
-  (i === 0 || SERVICES[i - 1].g !== s.g ? `<li class="g">${s.g}</li>` : '') +
-  `<li><span class="n">${s.name}</span><span class="p">${rub(s.price)}</span>${s.desc ? `<span class="d">${s.desc}</span>` : ''}</li>`).join('');
+document.getElementById('price-list').innerHTML = [...new Set(SERVICES.map(s => s.g))].map(g =>
+  `<li><span class="g">${g}</span>` + SERVICES.filter(s => s.g === g).map(s =>
+    `<div class="row"><span class="n">${s.name}</span><span class="p">${rub(s.price)}</span>${s.desc ? `<span class="d">${s.desc}</span>` : ''}</div>`).join('') + '</li>').join('');
 
 // карточки мастеров
 document.getElementById('masters-list').innerHTML = MASTERS.map(m =>
@@ -482,6 +483,7 @@ mstBox.addEventListener('click', e => {
 document.querySelectorAll('[data-master]').forEach(a => a.addEventListener('click', () => {
   const b = mstBox.querySelector(`[data-id="${a.dataset.master}"]`);
   pick(mstBox, b); state.mst = a.dataset.master; nextBtn(2).disabled = false;
+  state.time = null; nextBtn(3).disabled = true; renderSlots();
   go(state.svc ? 2 : 1);
 }));
 
